@@ -171,17 +171,20 @@
                 <input type="date" name="fecha" id="fechaActual" required>
             </div>
             <div class="form-group">
-                <label>Sitio</label>
+                <label>Lugar de Observación</label>
                 <select name="sitio" required>
                     <option value="">Seleccione lugar...</option>
                     <option value="Almacén">Almacén</option>
                     <option value="Biología">Biología</option>
+                    <option value="Calidad">Calidad</option>
+                    <option value="Campo">Campo</option>
                     <option value="Embarques">Embarques</option>
                     <option value="Molinos">Molinos</option>
                     <option value="Oficinas">Oficinas</option>
                     <option value="Registro (Caseta)">Registro (Caseta)</option>
                     <option value="Taller de Mantto. Industrial">Taller de Mantto. Industrial</option>
                      <option value="Taller de Mantto. Automotriz">Taller de Mantto. Automotriz</option>
+                    <option value="Otro">Otro</option>
                 </select>
             </div>
         </div>
@@ -199,12 +202,12 @@
                 <option value="condicion">Condición Insegura</option>
             </select>
         </div>
-        <div class="form-group">
+        </div>
+        <div id="seccionActo" class="section hidden">
+                    <div class="form-group">
             <label>Persona Observada</label>
             <input type="text" list="listaObservados" name="observado" placeholder="Nombre de quien es observado" required>
             <datalist id="listaObservados"></datalist>
-        </div>
-        <div id="seccionActo" class="section hidden">
             <h3>I. OBSERVACIÓN DE SEGURIDAD</h3>
                         <label style="margin-top:15px">¿Realiza actividades de forma segura?</label>
             <select name="actividadSegura" id="actividadSegura" onchange="toggleEvita()">
@@ -419,6 +422,7 @@
 </body>
 
 </html>
+
 
 
 
