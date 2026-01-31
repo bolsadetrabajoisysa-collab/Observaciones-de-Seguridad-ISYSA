@@ -191,25 +191,37 @@
             <input type="text" list="listaObservadores" name="observador" placeholder="Nombre de quien observa" required>
             <datalist id="listaObservadores"></datalist>
         </div>
-
+        <div class="form-group">
+            <label>Tipo de Observación</label>
+            <select id="tipoObservacion" name="tipoObservacion" onchange="toggleSections()" required>
+                <option value="">-- Seleccione una opción --</option>
+                <option value="acto">Observación de Seguridad</option>
+                <option value="condicion">Condición Insegura</option>
+            </select>
+        </div>
         <div class="form-group">
             <label>Persona Observada</label>
             <input type="text" list="listaObservados" name="observado" placeholder="Nombre de quien es observado" required>
             <datalist id="listaObservados"></datalist>
         </div>
-
-        <div class="form-group">
-            <label>Tipo de Observación</label>
-            <select id="tipoObservacion" name="tipoObservacion" onchange="toggleSections()" required>
-                <option value="">-- Seleccione una opción --</option>
-                <option value="acto">Acto Inseguro</option>
-                <option value="condicion">Condición Insegura</option>
-            </select>
-        </div>
-
         <div id="seccionActo" class="section hidden">
-            <h3>I. ACTO INSEGURO</h3>
-            <label>¿Se proveyó lo necesario?</label>
+            <h3>I. OBSERVACIÓN DE SEGURIDAD</h3>
+                        <label style="margin-top:15px">¿Realiza actividades de forma segura?</label>
+            <select name="actividadSegura" id="actividadSegura" onchange="toggleEvita()">
+                <option value="SI">SÍ</option>
+                <option value="NO">NO</option>
+            </select>
+
+            <div id="queEvita" class="hidden">
+                <label>Razón detectada:</label>
+                <select name="razonInsegura">
+                    <option value="Equipos Inadecuados">Equipos inadecuados</option>
+                    <option value="Falta de Supervisión">Falta de supervisión</option>
+                    <option value="Presión de tiempo">Presión de tiempo</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <label>¿Se cuenta con lo necesario para hacer la actividad de forma segura?</label>
             <select name="provisto" id="provistoSelect" onchange="toggleProvisto()">
                 <option value="SI">SÍ</option>
                 <option value="NO">NO</option>
@@ -226,22 +238,6 @@
                     <label class="checkbox-item"><input type="checkbox" name="falta" value="Análisis">Falta el análisis previo de la tarea para identificar los peligros</label>
                      <label class="checkbox-item"><input type="checkbox" name="falta" value="Controles">Falta instalar los controles adecuados para evitar un accidente</label>
                 </div>
-            </div>
-
-            <label style="margin-top:15px">¿Realiza actividades de forma segura?</label>
-            <select name="actividadSegura" id="actividadSegura" onchange="toggleEvita()">
-                <option value="SI">SÍ</option>
-                <option value="NO">NO</option>
-            </select>
-
-            <div id="queEvita" class="hidden">
-                <label>Razón detectada:</label>
-                <select name="razonInsegura">
-                    <option value="Equipos Inadecuados">Equipos inadecuados</option>
-                    <option value="Falta de Supervisión">Falta de supervisión</option>
-                    <option value="Presión de tiempo">Presión de tiempo</option>
-                    <option value="Otro">Otro</option>
-                </select>
             </div>
 
             <label style="margin-top:15px">Estado identificado:</label>
@@ -423,5 +419,6 @@
 </body>
 
 </html>
+
 
 
