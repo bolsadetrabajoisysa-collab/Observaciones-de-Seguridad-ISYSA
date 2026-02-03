@@ -210,11 +210,13 @@
                     <option value="Calidad">Calidad</option>
                     <option value="Campo">Campo</option>
                     <option value="Embarques">Embarques</option>
+                     <option value="Lavadoras">Lavadoras</option>
                     <option value="Molinos">Molinos</option>
                     <option value="Oficinas">Oficinas</option>
-                    <option value="Registro (Caseta)">Registro (Caseta)</option>
-                    <option value="Taller de Mantto. Industrial">Taller de Mantto. Industrial</option>
-                    <option value="Taller de Mantto. Automotriz">Taller de Mantto. Automotriz</option>
+                    <option value="Registro (Vigilancia)">Registro (Vigilancia)</option>
+                    <option value="Mantto. Industrial">Mantto. Industrial</option>
+                    <option value="Mantto. Automotriz">Mantto. Automotriz</option>
+                     <option value="Transporte">Transporte</option>
                     <option value="Otro">Otro</option>
                 </select>
                 <input type="text" name="otroSitio" id="otroSitio" class="hidden mt-2" placeholder="Especifique el lugar">
@@ -244,7 +246,7 @@
                 <datalist id="listaObservados"></datalist>
             </div>
             <div class="form-group">
-                <label>¿Realiza actividades de forma segura?</label>
+                <label>¿Realiza su actividad de forma segura?</label>
                 <select name="actividadSegura" id="actividadSegura" onchange="toggleEvita()">
                     <option value="SI">SÍ</option>
                     <option value="NO">NO</option>
@@ -285,11 +287,7 @@
                 </div>
                 <input type="text" name="otroFaltante" id="otroFaltante" class="hidden mt-2" placeholder="Especifique qué falta">
             <div class="form-group">
-                <label>¿Se dio aviso al supervisor o jefe de área?</label>
-                <select name="avisoSupervisor">
-                    <option value="SI">SÍ</option>
-                    <option value="NO">NO</option>
-                </select>
+                <label>FAVOR DE DAR AVISO AL SUPERVISOR O JEFE DE ÁREA DE LA NECESIDAD FALTANTE</label>
             </div>
             </div>
 
@@ -306,7 +304,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>Subir foto con el trabajador observado *</label>
+                <label>Subir fotografía de observación realizada *</label>
                 <input type="file" id="fotoTrabajador" accept="image/*">
                 <span class="file-label">Obligatorio para registro de observación directa.</span>
             </div>
@@ -315,7 +313,7 @@
         <div id="seccionCondicion" class="section hidden">
             <h3>II. CONDICIÓN INSEGURA</h3>
             <div class="form-group">
-                <label>Descripción del riesgo detectado *</label>
+                <label>Descripción del riesgo detectado (especificar lugar) *</label>
                 <textarea id="condicionDesc" name="descripcionCondicion" rows="3" placeholder="Detalle la falla o riesgo..."></textarea>
             </div>
             <div class="form-group">
@@ -337,6 +335,7 @@
                     <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Jenniffer Basulto Espadas"> Ing. Jenniffer Basulto Espadas</label>
                     <label class="checkbox-item"><input type="checkbox" class="resp-check" value="QI. Sergio Alberto Maldonado Perez"> QI. Sergio Alberto Maldonado Perez</label>
                     <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Biol. Carlos Eduardo Olivera Calderon"> Biol. Carlos Eduardo Olivera Calderon</label>
+                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Dr. Álvaro Arellano López"> Dr. Álvaro Arellano López</label>
                 </div>
             </div>
         </div>
@@ -346,7 +345,7 @@
 </div>
 
 <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwsrrfDa2ek4ckK4qGL-2dX_faWxKYd-KipVgaqHmi1CWGSBE3km6917IISComxdx1o/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzhDCNnlVZ1p8r9X30h9GNXRJh6d1tmdER15h5g_1__rMNAdrmSKAsB5kE7RLfrKWL3/exec";
     const LOGO_BASE64 = "data:image/png;base64,TU_LOGO_EN_BASE64_AQUÍ";
 
     window.onload = () => {
@@ -534,4 +533,5 @@
 </script>
 </body>
 </html>
+
 
