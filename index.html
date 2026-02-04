@@ -3,549 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad ISYSA | Reporte de Observaciones</title>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
+    <title>Panel de Capitanes - ISYSA</title>
     <style>
-        :root {
-            --night-blue: #002344; 
-            --azul-claro: #004d82;
-            --azul-acento: #007bff;
-            --blanco: #ffffff;
-            --gris-fondo: #f1f5f9;
-            --borde: #cbd5e1;
-            --texto: #0f172a;
-            --error: #ef4444;
-        }
-
-        body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background: #e2e8f0;
-            padding: 15px; 
-            color: var(--texto);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container { 
-            max-width: 850px; 
-            width: 100%;
-            background: var(--blanco); 
-            border-radius: 16px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
-            overflow: hidden;
-            margin: 20px 0;
-        }
-
-        .header {
-            background-color: var(--night-blue);
-            padding: 30px 40px;
-            color: white;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .header h1 { 
-            margin: 0; 
-            font-size: 1.6rem; 
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            text-align: left;
-            flex: 1;
-        }
-
-        .header img {
-            max-height: 110px;
-            width: auto;
-            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.2));
-        }
-
-        form { padding: 30px; }
-
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 20px;
-            }
-            .header h1 {
-                text-align: center;
-                font-size: 1.2rem;
-            }
-            .grid-2 { grid-template-columns: 1fr; }
-            form { padding: 20px; }
-        }
-
-        .form-group { margin-bottom: 18px; }
-
-        .section { 
-            margin: 25px 0;
-            padding: 20px; 
-            border-radius: 12px; 
-            background-color: var(--gris-fondo);
-            border-left: 5px solid var(--night-blue);
-        }
-
-        h3 { 
-            color: var(--night-blue);
-            font-size: 1.1rem;
-            margin-top: 0;
-            border-bottom: 1px solid var(--borde);
-            padding-bottom: 10px;
-        }
-
-        label { 
-            display: block; 
-            margin-bottom: 6px; 
-            font-weight: 600; 
-            font-size: 0.9rem;
-            color: #334155;
-        }
-
-        input, select, textarea { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--borde); 
-            border-radius: 8px; 
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background: white;
-            box-sizing: border-box;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: var(--azul-acento);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-        }
-
-        .checkbox-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 8px; 
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--borde);
-            max-height: 200px;
-            overflow-y: auto;
-        }
-
-        .checkbox-item { 
-            display: flex; 
-            align-items: center;
-            font-size: 0.85rem;
-            gap: 8px;
-        }
-
-        .checkbox-item input { width: auto; }
-
-        button { 
-            width: 100%; 
-            background: var(--night-blue);
-            color: white; 
-            padding: 16px; 
-            border: none; 
-            border-radius: 8px; 
-            font-size: 1rem; 
-            font-weight: bold;
-            cursor: pointer; 
-            transition: background 0.3s;
-            margin-top: 20px;
-        }
-
-        button:hover { background: var(--azul-claro); }
-        button:disabled { background: #94a3b8; cursor: not-allowed; }
+        :root { --gold: #c5a021; --navy: #002344; --light: #f1f5f9; --accent: #eab308; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f2f5; padding: 20px; color: #1e293b; }
+        .container { width: 100%; max-width: 600px; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; margin: auto; border-top: 8px solid var(--gold); }
+        .header { background: var(--navy); color: white; padding: 20px; text-align: center; }
+        .body-content { padding: 25px; }
+        .group { margin-bottom: 18px; }
+        label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--navy); font-size: 0.85rem; text-transform: uppercase; }
+        select, textarea, input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; box-sizing: border-box; }
         
+        /* Visor de detalles */
+        .info-card { background: var(--light); border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin-top: 20px; display: none; }
+        .section-title { border-bottom: 2px solid var(--gold); padding-bottom: 5px; margin-bottom: 15px; color: var(--navy); font-size: 1.1rem; }
+        .data-row { margin-bottom: 8px; font-size: 0.9rem; }
+        .data-label { font-weight: bold; color: #475569; }
+        
+        .img-evidencia { width: 100%; border-radius: 8px; margin-top: 10px; cursor: pointer; border: 2px solid #ddd; }
+        button { width: 100%; background: var(--navy); color: white; border: none; padding: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 15px; transition: 0.3s; }
+        button:hover { background: var(--gold); }
         .hidden { display: none; }
-        .mt-2 { margin-top: 10px; }
-
-        .file-label {
-            font-size: 0.8rem;
-            color: var(--azul-claro);
-            margin-top: 5px;
-            display: block;
-        }
+        .loader { text-align: center; color: var(--gold); font-weight: bold; display: none; }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div id="loginSection" class="container">
     <div class="header">
-        <h1>Observaciones de Seguridad ISYSA</h1>
-        <img id="logoForm" src="data:image/png;base64," alt="Logo ISYSA">
+        <h1 style="margin:0; font-size: 1.4rem;">Acceso Capitanes</h1>
+        <p style="margin:5px 0 0; opacity: 0.9;">Seguridad Industrial ISYSA</p>
+    </div>
+    <div class="body-content">
+        <div class="group">
+            <label>Seleccione su nombre</label>
+            <select id="loginNombre">
+                <option value="">Cargando capitanes...</option>
+            </select>
+        </div>
+        <div class="group">
+            <label>Código de Acceso</label>
+            <input type="password" id="loginPass" placeholder="Ingrese su contraseña">
+        </div>
+        <button onclick="intentarLogin()" id="btnLogin">INGRESAR AL PANEL</button>
+    </div>
+</div>
+
+<div id="mainPanel" class="container" style="display: none;">
+    <div class="header">
+        <h1 id="txtBienvenida" style="margin:0; font-size: 1.2rem;">Panel de Gestión</h1>
+        <p style="margin:5px 0 0; opacity: 0.8; font-size: 0.8rem;">Evaluación de Observaciones</p>
     </div>
 
-    <form id="seguridadForm">
-        <div class="form-group">
-            <label>Correo Electrónico *</label>
-            <input type="email" name="correo" placeholder="ejemplo@isysa.com" required>
-        </div>
-
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Fecha *</label>
-                <input type="date" name="fecha" id="fechaActual" required>
-            </div>
-            <div class="form-group">
-                <label>Lugar de Observación *</label>
-                <select name="sitio" id="sitioSelect" onchange="toggleOtroLugar()" required>
-                    <option value="">Seleccione lugar...</option>
-                    <option value="Almacén">Almacén</option>
-                    <option value="Biología">Biología</option>
-                    <option value="Calidad">Calidad</option>
-                    <option value="Campo">Campo</option>
-                    <option value="Embarques">Embarques</option>
-                     <option value="Lavadoras">Lavadoras</option>
-                    <option value="Molinos">Molinos</option>
-                    <option value="Oficinas">Oficinas</option>
-                    <option value="Registro (Vigilancia)">Registro (Vigilancia)</option>
-                    <option value="Mantto. Industrial">Mantto. Industrial</option>
-                    <option value="Mantto. Automotriz">Mantto. Automotriz</option>
-                     <option value="Transporte">Transporte</option>
-                    <option value="Otro">Otro</option>
-                </select>
-                <input type="text" name="otroSitio" id="otroSitio" class="hidden mt-2" placeholder="Especifique el lugar">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Observador *</label>
-            <input type="text" list="listaObservadores" name="observador" placeholder="Nombre de quien observa" required>
-            <datalist id="listaObservadores"></datalist>
-        </div>
-
-        <div class="form-group">
-            <label>Tipo de Observación *</label>
-            <select id="tipoObservacion" name="tipoObservacion" onchange="toggleSections()" required>
-                <option value="">-- Seleccione una opción --</option>
-                <option value="acto">Observación de Seguridad</option>
-                <option value="condicion">Condición Insegura</option>
+    <div class="body-content">
+        <div class="group">
+            <label>1. Mis Observadores Asignados</label>
+            <select id="selectObservador" onchange="cargarReportes()">
+                <option value="">-- Seleccione un observador --</option>
             </select>
         </div>
 
-        <div id="seccionActo" class="section hidden">
-            <h3>I. OBSERVACIÓN DE SEGURIDAD</h3>
-            <div class="form-group">
-                <label>Persona Observada *</label>
-                <input type="text" list="listaObservados" name="observado" id="inputObservado" placeholder="Nombre de quien es observado">
-                <datalist id="listaObservados"></datalist>
-            </div>
-            <div class="form-group">
-                <label>¿Realiza su actividad de forma segura?</label>
-                <select name="actividadSegura" id="actividadSegura" onchange="toggleEvita()">
-                    <option value="SI">SÍ</option>
-                    <option value="NO">NO</option>
-                </select>
-            </div>
-            <div id="queEvita" class="form-group hidden">
-                <label>¿Qué evita que el trabajador realice sus actividades de forma segura?</label>
-                <select name="razonInsegura" id="razonInseguraSelect" onchange="toggleOtroRazon()">
-                    <option value="">-- Seleccione una razón --</option>
-                    <option value="Herramientas, equipos o maquinaria inadecuados, no disponibles o en malas condiciones">Herramientas, equipos o maquinaria inadecuados, no disponibles o en malas condiciones</option>
-                    <option value="Diseño inadecuado de las instalaciones.">Diseño inadecuado de las instalaciones.</option>
-                    <option value="Diseño inadecuado del proceso">Diseño inadecuado del proceso</option>
-                    <option value="Equipo de protección personal no disponible o nunca solicitado">Equipo de protección personal no disponible o nunca solicitado</option>
-                    <option value="Nunca ha recibido capacitación al respecto">Nunca ha recibido capacitación al respecto</option>
-                    <option value="Otro">Otro</option>
-                </select>
-                <input type="text" name="otroRazonInsegura" id="otroRazonInsegura" class="hidden mt-2" placeholder="Especifique la razón">
-            </div>
-            <div class="form-group">
-                <label>¿Se cuenta con lo necesario para hacer la actividad de forma segura?</label>
-                <select name="provisto" id="provistoSelect" onchange="toggleProvisto()">
-                    <option value="SI">SÍ</option>
-                    <option value="NO">NO</option>
-                </select>
-            </div>
-            
-            <div id="queFalta" class="form-group hidden">
-                <label>Especifique faltante:</label>
-                <div class="checkbox-grid">
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Capacitación"> Capacitación</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Herramientas"> Herramientas</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="EPP"> Equipo de Protección (EPP)</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Materiales"> Materiales</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Equipos adecuados"> Equipos adecuados</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Análisis"> Falta el análisis previo</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Controles"> Falta instalar controles</label>
-                    <label class="checkbox-item"><input type="checkbox" name="falta" value="Otro" id="checkOtroFaltante" onchange="toggleOtroFaltante()"> Otro</label>
-                </div>
-                <input type="text" name="otroFaltante" id="otroFaltante" class="hidden mt-2" placeholder="Especifique qué falta">
-            <div class="form-group">
-                <label>FAVOR DE DAR AVISO AL SUPERVISOR O JEFE DE ÁREA DE LA NECESIDAD FALTANTE</label>
-            </div>
-            </div>
-         <div class="form-group">
-                <label>Estado identificado:</label>
-                <select name="estadoComportamiento">
-                    <option value="Fatiga">Fatiga</option>
-                    <option value="Prisa">Prisa</option>
-                    <option value="Frustración">Frustración</option>
-                    <option value="Exceso de confianza">Exceso de confianza</option>
-                    <option value="Ninguno">Ninguno</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Subir fotografía de observación realizada *</label>
-                <input type="file" id="fotoTrabajador" accept="image/*">
-                <span class="file-label">Obligatorio para registro de observación directa.</span>
-            </div>
+        <div id="loaderRep" class="loader">Consultando registros...</div>
+
+        <div class="group">
+            <label>2. Observaciones del Mes</label>
+            <select id="selectReporte" onchange="mostrarDetalle()" disabled>
+                <option value="">Primero seleccione un observador</option>
+            </select>
         </div>
 
-        <div id="seccionCondicion" class="section hidden">
-            <h3>II. CONDICIÓN INSEGURA</h3>
-            <div class="form-group">
-                <label>Descripción del riesgo detectado (especificar lugar) *</label>
-                <textarea id="condicionDesc" name="descripcionCondicion" rows="3" placeholder="Detalle la falla o riesgo..."></textarea>
+        <div id="visorDetalle" class="info-card">
+            <div class="section-title">Detalles del Registro</div>
+            <div id="datosBase"></div> <div id="bloqueActo" class="hidden">
+                <div class="section-title" style="margin-top:20px; color:#ef4444;">I. Acto Inseguro</div>
+                <div id="datosActo"></div>
             </div>
-            <div class="form-group">
-                <label>Evidencia Fotográfica *</label>
-                <input type="file" id="fotoFile" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label>Responsables de atención (Seleccione al menos uno) *</label>
-                <div class="checkbox-grid" id="gridResponsables">
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Biol. Leonel De Jesus Perera Ak"> Biol. Leonel De Jesus Perera Ak</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Lic. Rafael Jesus Perez Avila"> Lic. Rafael Jesus Perez Avila</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="QI. Gustavo Jauregui Mejia"> QI. Gustavo Jauregui Mejia</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Mario Guzman Ordaz"> Ing. Mario Guzman Ordaz</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Roberto Daniel Orozco De La Cruz"> Ing. Roberto Daniel Orozco De La Cruz</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Alberto Pastor Zamudio Rodriguez"> Ing. Alberto Pastor Zamudio Rodriguez</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Julio Cesar Lopez Poot"> Ing. Julio Cesar Lopez Poot</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Imer Sebastian Maldonado Marrufo"> Ing. Imer Sebastian Maldonado Marrufo</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Jorge Urbano Hernandez Muro"> Ing. Jorge Urbano Hernandez Muro</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Ing. Jenniffer Basulto Espadas"> Ing. Jenniffer Basulto Espadas</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="QI. Sergio Alberto Maldonado Perez"> QI. Sergio Alberto Maldonado Perez</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Biol. Carlos Eduardo Olivera Calderon"> Biol. Carlos Eduardo Olivera Calderon</label>
-                    <label class="checkbox-item"><input type="checkbox" class="resp-check" value="Dr. Álvaro Arellano López"> Dr. Álvaro Arellano López</label>
-                </div>
-            </div>
-        </div>
 
-        <button type="submit" id="btnEnviar">Guardar Reporte</button>
-    </form>
+            <div id="bloqueCondicion" class="hidden">
+                <div class="section-title" style="margin-top:20px; color:#f59e0b;">II. Condición Insegura</div>
+                <div id="datosCondicion"></div>
+                <div id="valFoto"></div>
+            </div>
+
+            <form id="formDictamen" style="margin-top:25px;">
+                <input type="hidden" id="idFila" name="idFila">
+                <label>Calificación del Capitán</label>
+                <select name="dictamen" required>
+                    <option value="Validado">✅ Validar Registro</option>
+                    <option value="Corregir">⚠️ Requiere Corrección</option>
+                    <option value="Rechazado">❌ Rechazar</option>
+                </select>
+                <textarea name="comentarios" rows="3" placeholder="Notas o retroalimentación para el observador..." style="margin-top:10px;"></textarea>
+                <button type="submit" id="btnEnviar" style="background: var(--gold);">GUARDAR EVALUACIÓN</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzEn-UNJYMbR-xmn5KcQK0PlmhVpHYmGVHnXdRiPG3BrcI1Z42bQZSACQejIjLdggYx/exec";
-    const LOGO_BASE64 = "data:image/png;base64,TU_LOGO_EN_BASE64_AQUÍ";
+    const MI_URL = "https://script.google.com/macros/s/AKfycbzEn-UNJYMbR-xmn5KcQK0PlmhVpHYmGVHnXdRiPG3BrcI1Z42bQZSACQejIjLdggYx/exec"; 
+    let baseDatos = [];
 
-    // Diccionario de correos electrónicos
-    const emailsResponsables = {
-        "Biol. Leonel De Jesus Perera Ak": "lperera@isysa.com.mx",
-        "Lic. Rafael Jesus Perez Avila": "rperez@isysa.com.mx",
-        "QI. Gustavo Jauregui Mejia": "gjauregui@isysa.com.mx",
-        "Ing. Mario Guzman Ordaz": "mguzman@isysa.com.mx",
-        "Ing. Roberto Daniel Orozco De La Cruz": "rorozco@isysa.com.mx",
-        "Ing. Alberto Pastor Zamudio Rodriguez": "azamudio@isysa.com.mx",
-        "Ing. Julio Cesar Lopez Poot": "jlopez@isysa.com.mx",
-        "Ing. Imer Sebastian Maldonado Marrufo": "imaldonado@isysa.com.mx",
-        "Ing. Jorge Urbano Hernandez Muro": "jhernandez@isysa.com.mx",
-        "Ing. Jenniffer Basulto Espadas": "jbasulto@isysa.com.mx",
-        "QI. Sergio Alberto Maldonado Perez": "smaldonado@isysa.com.mx",
-        "Biol. Carlos Eduardo Olivera Calderon": "colivera@isysa.com.mx",
-        "Dr. Álvaro Arellano López": "aarellano@isysa.com.mx"
-    };
-
-    window.onload = () => {
-        document.getElementById('fechaActual').valueAsDate = new Date();
-        cargarListas();
-    };
-
-    async function cargarListas() {
+    // Al cargar: Llenar lista de Capitanes
+    window.onload = async () => {
         try {
-            const response = await fetch(scriptURL);
-            const data = await response.json();
-            const dlObservador = document.getElementById('listaObservadores');
-            const dlObservado = document.getElementById('listaObservados');
-            if(data.observadores) data.observadores.forEach(n => { let o = document.createElement('option'); o.value = n; dlObservador.appendChild(o); });
-            if(data.observados) data.observados.forEach(n => { let o = document.createElement('option'); o.value = n; dlObservado.appendChild(o); });
-        } catch (e) { console.log("Listas no cargadas"); }
-    }
+            const resp = await fetch(`${MI_URL}?action=getCapitanes`);
+            const data = await resp.json();
+            const sel = document.getElementById("loginNombre");
+            sel.innerHTML = '<option value="">-- Seleccione --</option>';
+            data.capitanes.forEach(c => sel.innerHTML += `<option value="${c}">${c}</option>`);
+        } catch (e) { alert("Error al conectar con el servidor."); }
+    };
 
-    function toggleOtroLugar() {
-        const select = document.getElementById('sitioSelect');
-        const input = document.getElementById('otroSitio');
-        input.classList.toggle('hidden', select.value !== 'Otro');
-        input.required = (select.value === 'Otro');
-    }
+    // Función de Login
+    async function intentarLogin() {
+        const nombre = document.getElementById("loginNombre").value;
+        const pass = document.getElementById("loginPass").value;
+        if (!nombre || !pass) return alert("Complete los datos");
 
-    function toggleOtroRazon() {
-        const select = document.getElementById('razonInseguraSelect');
-        const input = document.getElementById('otroRazonInsegura');
-        input.classList.toggle('hidden', select.value !== 'Otro');
-        input.required = (select.value === 'Otro');
-    }
-
-    function toggleOtroFaltante() {
-        const check = document.getElementById('checkOtroFaltante');
-        const input = document.getElementById('otroFaltante');
-        input.classList.toggle('hidden', !check.checked);
-        if(check.checked) input.focus();
-        input.required = check.checked;
-    }
-
-    function toggleSections() {
-        const tipo = document.getElementById('tipoObservacion').value;
-        const seccionActo = document.getElementById('seccionActo');
-        const seccionCondicion = document.getElementById('seccionCondicion');
+        const btn = document.getElementById("btnLogin");
+        btn.innerText = "Verificando...";
         
-        seccionActo.classList.toggle('hidden', tipo !== 'acto');
-        seccionCondicion.classList.toggle('hidden', tipo !== 'condicion');
+        try {
+            const resp = await fetch(`${MI_URL}?action=login&nombre=${encodeURIComponent(nombre)}&pass=${encodeURIComponent(pass)}`);
+            const result = await resp.json();
 
-        document.getElementById('inputObservado').required = (tipo === 'acto');
-        document.getElementById('condicionDesc').required = (tipo === 'condicion');
-    }
-
-    function toggleProvisto() {
-        const val = document.getElementById('provistoSelect').value;
-        document.getElementById('queFalta').classList.toggle('hidden', val === 'SI');
-    }
-
-    function toggleEvita() {
-        const val = document.getElementById('actividadSegura').value;
-        document.getElementById('queEvita').classList.toggle('hidden', val === 'SI');
-    }
-
-    document.getElementById('seguridadForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const tipo = document.getElementById('tipoObservacion').value;
-        const btn = document.getElementById('btnEnviar');
-        
-        if (!tipo) { alert("Por favor seleccione un tipo de observación."); return; }
-
-        let fotoInput;
-        if (tipo === 'acto') {
-            fotoInput = document.getElementById('fotoTrabajador');
-            if (fotoInput.files.length === 0) {
-                alert("⚠️ Debe subir la foto con el trabajador observado.");
-                return;
-            }
-        } else {
-            fotoInput = document.getElementById('fotoFile');
-            const responsables = document.querySelectorAll('.resp-check:checked');
-            if (responsables.length === 0) {
-                alert("⚠️ Seleccione al menos un responsable para la condición insegura.");
-                return;
-            }
-            if (fotoInput.files.length === 0) {
-                alert("⚠️ Debe subir una foto de evidencia de la condición.");
-                return;
-            }
-        }
-
-        btn.innerText = "PROCESANDO... ESPERE";
-        btn.disabled = true;
-
-        const formData = new FormData(this);
-        const payload = {};
-        formData.forEach((v, k) => { 
-            if (k === 'sitio' && v === 'Otro') {
-                payload[k] = formData.get('otroSitio');
-            } else if (k === 'razonInsegura' && v === 'Otro') {
-                payload[k] = formData.get('otroRazonInsegura');
+            if (result.success) {
+                document.getElementById("loginSection").style.display = "none";
+                document.getElementById("mainPanel").style.display = "block";
+                document.getElementById("txtBienvenida").innerText = `Capitán: ${nombre}`;
+                
+                // Llenar select de observadores permitidos
+                const selObs = document.getElementById("selectObservador");
+                result.observadores.forEach(obs => {
+                    selObs.innerHTML += `<option value="${obs}">${obs}</option>`;
+                });
             } else {
-                payload[k] = v;
+                alert(result.message);
             }
-        });
-
-        const faltantesArr = Array.from(document.querySelectorAll('input[name="falta"]:checked')).map(cb => {
-            if(cb.value === 'Otro') {
-                return "Otro: " + document.getElementById('otroFaltante').value;
-            }
-            return cb.value;
-        });
-        payload.falta = faltantesArr.join(", ");
-
-        const seleccionados = Array.from(document.querySelectorAll('.resp-check:checked')).map(cb => cb.value.trim());
-        payload.responsables = seleccionados.join(", ");
-        
-        // Obtener correos electrónicos correspondientes
-        const listaEmails = seleccionados.map(nombre => emailsResponsables[nombre] || "").filter(email => email !== "");
-        payload.emailsResponsables = listaEmails.join(",");
-
-        const reader = new FileReader();
-        reader.onload = async (ev) => {
-            payload.fotografia = ev.target.result;
-            await enviar(payload, btn);
-        };
-        reader.readAsDataURL(fotoInput.files[0]);
-    });
-
-    async function enviar(payload, btn) {
-        const params = new URLSearchParams();
-        for (const k in payload) params.append(k, payload[k]);
-
-        try {
-            if (payload.tipoObservacion === 'condicion') {
-                await generarPDF(payload);
-                alert("Generando PDF y enviando notificaciones a responsables...");
-            }
-
-            await fetch(scriptURL, { method: "POST", body: params, mode: 'no-cors' });
-            alert("✅ ¡Reporte guardado exitosamente!");
-            location.reload();
-        } catch (error) {
-            console.error("Error:", error);
-            alert("❌ Error al procesar datos.");
-            btn.disabled = false;
-            btn.innerText = "Guardar Reporte";
-        }
+        } catch (e) { alert("Error de red."); }
+        btn.innerText = "INGRESAR AL PANEL";
     }
 
-    async function generarPDF(datos) {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('p', 'mm', 'a4');
+    // Cargar reportes del observador seleccionado
+    async function cargarReportes() {
+        const obs = document.getElementById("selectObservador").value;
+        const selRep = document.getElementById("selectReporte");
+        const loader = document.getElementById("loaderRep");
         
+        if (!obs) return;
+        
+        selRep.disabled = true;
+        loader.style.display = "block";
+        document.getElementById("visorDetalle").style.display = "none";
+
         try {
-            doc.addImage(LOGO_BASE64, 'PNG', 15, 10, 30, 20);
-        } catch (e) {
-            console.warn("No se pudo cargar el logo en el PDF.");
-        }
-
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(16);
-        doc.setTextColor(0, 35, 68); 
-        doc.text("Reporte de Condición Insegura", 50, 20);
-        doc.setFontSize(10);
-        doc.text("Industria Salinera de Yucatán S.A de C.V.", 50, 26);
-        
-        doc.autoTable({
-            startY: 40,
-            head: [['Campo', 'Información']],
-            body: [
-                ['Fecha de Reporte', datos.fecha],
-                ['Sitio / Lugar', datos.sitio],
-                ['Nombre del Observador', datos.observador],
-                ['Descripción del Riesgo', datos.descripcionCondicion],
-                ['Responsables Asignados', datos.responsables]
-            ],
-            headStyles: { fillColor: [0, 35, 68] }, 
-            theme: 'grid'
-        });
-
-        if (datos.fotografia) {
-            doc.addPage();
-            doc.setFontSize(12);
-            doc.text("EVIDENCIA FOTOGRÁFICA", 15, 20);
-            doc.addImage(datos.fotografia, 'JPEG', 15, 30, 180, 135);
-        }
-        
-        doc.save(`Reporte_ISYSA_${datos.fecha}.pdf`);
+            const resp = await fetch(`${MI_URL}?action=leerTodo&observador=${encodeURIComponent(obs)}`);
+            baseDatos = await resp.json();
+            
+            selRep.innerHTML = '<option value="">-- Seleccione un reporte --</option>';
+            if (baseDatos.length > 0) {
+                baseDatos.forEach(r => {
+                    selRep.innerHTML += `<option value="${r.id}">${r.fechaObs} - ${r.sitio} (${r.tipo})</option>`;
+                });
+                selRep.disabled = false;
+            } else {
+                selRep.innerHTML = '<option>Sin reportes este mes</option>';
+            }
+        } catch (e) { alert("Error al obtener reportes."); }
+        loader.style.display = "none";
     }
+
+    function mostrarDetalle() {
+        const id = document.getElementById("selectReporte").value;
+        const item = baseDatos.find(x => x.id == id);
+        if(!item) return;
+
+        document.getElementById("idFila").value = item.id;
+        document.getElementById("datosBase").innerHTML = `
+            <div class="data-row"><span class="data-label">Fecha Obs:</span> ${item.fechaObs}</div>
+            <div class="data-row"><span class="data-label">Sitio:</span> ${item.sitio}</div>
+        `;
+
+        if(item.tipo.toLowerCase().includes("acto")) {
+            document.getElementById("bloqueActo").classList.remove("hidden");
+            document.getElementById("bloqueCondicion").classList.add("hidden");
+            document.getElementById("datosActo").innerHTML = `
+                <div class="data-row"><span class="data-label">Observado:</span> ${item.observado}</div>
+                <div class="data-row"><span class="data-label">Estado:</span> ${item.estadoComportamiento}</div>
+            `;
+        } else {
+            document.getElementById("bloqueCondicion").classList.remove("hidden");
+            document.getElementById("bloqueActo").classList.add("hidden");
+            document.getElementById("datosCondicion").innerHTML = `
+                <div class="data-row"><span class="data-label">Descripción:</span> ${item.condicionDesc}</div>
+                <div class="data-row"><span class="data-label">Responsables:</span> ${item.responsables}</div>
+            `;
+            document.getElementById("valFoto").innerHTML = item.foto !== "Sin foto" ? 
+                `<img src="${item.foto}" class="img-evidencia" onclick="window.open('${item.foto}')">` : "<em>Sin foto</em>";
+        }
+
+        document.getElementById("visorDetalle").style.display = "block";
+    }
+
+    // Envío del Dictamen
+    document.getElementById("formDictamen").onsubmit = async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("btnEnviar");
+        btn.disabled = true;
+        btn.innerText = "Guardando...";
+
+        const formData = new FormData(e.target);
+        const params = new URLSearchParams(formData);
+
+        try {
+            await fetch(MI_URL, { method: 'POST', body: params, mode: 'no-cors' });
+            alert("Evaluación guardada correctamente.");
+            cargarReportes(); // Refrescar lista
+        } catch (err) {
+            alert("Error al guardar.");
+        }
+        btn.disabled = false;
+        btn.innerText = "GUARDAR EVALUACIÓN";
+    };
 </script>
 </body>
 </html>
